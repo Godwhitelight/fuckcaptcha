@@ -3,10 +3,7 @@ import json
 import random
 import secrets
 import time
-import faker
 from fuckcaptcha import cipher
-
-faker = faker.Faker()
 
 
 def get_browser_data(user_agent: str) -> str:
