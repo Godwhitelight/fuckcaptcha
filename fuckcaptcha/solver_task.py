@@ -2,10 +2,7 @@ import json
 import random
 import sys
 import time
-from urllib.parse import urlparse
-
 import httpx
-
 from fuckcaptcha import cipher
 from fuckcaptcha.api import breakers
 from fuckcaptcha.bda.browser_agent_fetcher import get_random_bda
@@ -19,9 +16,8 @@ def get_request_id(session_token):
 
 class Solver:
 
-    def __init__(self, surl, skey, url, agent, bda, proxies):
+    def __init__(self, skey, url, agent, bda, proxies):
         self.proxies = proxies
-        self.surl = urlparse(surl).hostname
         self.agent = agent
         self.bda = bda
         self.url = url
@@ -206,12 +202,12 @@ class Solver:
             }
 
 
-def solve(surl, skey, url, proxies):
+def solve(skey, url, proxies):
     while True:
         nigger = get_random_bda()
         agent = nigger['agent']
         bda = nigger['bda']
-        solver = Solver(surl, skey, url, agent, bda, proxies)
+        solver = Solver(skey, url, agent, bda, proxies)
         try:
             result = solver.solve()
             if result['solved']:
